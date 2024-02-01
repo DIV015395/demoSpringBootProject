@@ -1,14 +1,7 @@
 package com.example.demo;
-
-
-import com.example.demo.User;
-import com.example.demo.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
-
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
