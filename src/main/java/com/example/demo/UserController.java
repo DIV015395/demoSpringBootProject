@@ -1,50 +1,48 @@
 package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
+
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<Users> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
-    }
+    public ResponseEntity<Users> getUserById(@PathVariable Long id) {
+        Users users = userService.getUserById(id);
 
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
-    }
-
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
-        // Retrieve the existing user by ID
-        User existingUser = userService.getUserById(id);
-
-        // Check if the existing user is found
-        if (existingUser == null) {
-            // Handle the case where the user with the given ID is not found
-            // You might return an error response or throw an exception
-            return null;
+        if (users != null) {
+            System.out.println("Users found: " + users);
+            return ResponseEntity.ok(users);
+        } else {
+            System.out.println("Users not found for ID: " + id);
+            return ResponseEntity.notFound().build();
         }
+    }
 
-        // Update the properties of the existing user with the values from the updated user
-        existingUser.setName(updatedUser.getName());
 
-        // Save the updated user in the database
-        return userService.updateUser(existingUser);
+    @PostMapping("/create")
+    public Users createUser(@RequestBody Users users) {
+        return userService.createUser(users);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }
