@@ -1,15 +1,20 @@
 package com.example.demo;
 
-import java.util.List;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Date;
 
+@Service
 public interface UserService {
-    List<Users> getAllUsers();
-    Users getUserById(Long id);
-    Users createUser(Users user);
-    void deleteUser(Long id);
+    // Method to sign up a new user
+    User signUp(User user);
 
+    // Method to log in and generate a JWT token
+    String login(String email, String password);
+
+    // Other methods for managing users, if needed
+    // ...
 }
-
-

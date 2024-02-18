@@ -1,48 +1,34 @@
 package com.example.demo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UserController
+{
 
     private final UserService userService;
-
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping
-    public List<Users> getAllUsers() {
-        return userService.getAllUsers();
+    @PostMapping("/signup")
+    public ResponseEntity<User> signUp(@RequestBody User user) {
+        User createdUser = userService.signUp(user);
+        return ResponseEntity.ok(createdUser);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Users> getUserById(@PathVariable Long id) {
-        Users users = userService.getUserById(id);
-
-        if (users != null) {
-            System.out.println("Users found: " + users);
-            return ResponseEntity.ok(users);
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
+        String jwtToken = userService.login(email, password);
+        if (jwtToken != null) {
+            return ResponseEntity.ok(jwtToken);
         } else {
-            System.out.println("Users not found for ID: " + id);
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().body("Invalid credentials");
         }
     }
-
-
-    @PostMapping("/create")
-    public Users createUser(@RequestBody Users users) {
-        return userService.createUser(users);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
-        return ResponseEntity.noContent().build();
-    }
 }
+
