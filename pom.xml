@@ -49,6 +49,16 @@
 			<version>12.6.0.jre11</version>
 		</dependency>
 
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
 
 		<!-- MySQL Connector/J for MySQL database connectivity -->
 		<dependency>
@@ -56,12 +66,26 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>7.0.2.Final</version> <!-- Use the latest version available -->
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter-sql-mysql -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
 			<version>1.2.8.RELEASE</version>
 		</dependency>
+			<!-- Other dependencies -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.18.22</version> <!-- Use the latest version available -->
+				<scope>provided</scope>
+			</dependency>
+
 
 		<dependency>
 			<groupId>com.google.cloud.sql</groupId>
