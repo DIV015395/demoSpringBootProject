@@ -42,6 +42,8 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
+
+
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
@@ -102,6 +104,14 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+		<!-- Other repositories -->
+		<repository>
+			<id>top-decoder-repo</id>
+			<url>https://asia-south2-maven.pkg.dev/top-decoder-408617/springboot</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
