@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
-
     private UsersDTO convertToDTO(Users user) {
         // Logic to convert Users entity to UsersDTO
         UsersDTO usersDTO = new UsersDTO();

@@ -34,6 +34,7 @@ public class UserController
             return ResponseEntity.notFound().build();
         }
     }
+
     @PostMapping("/create")
     public UsersDTO createUser(@RequestBody @Validated UsersDTO users) {
         try

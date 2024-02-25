@@ -17,7 +17,32 @@ jobs:
         uses: google-github-actions/setup-gcloud@v0
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
-          project_id: helical-study-413012
+          project_id: smart-window-413315
           export_default_credentials: true
 
-    # Additional steps for building, testing, and deploying your application
+      - name: Configure Docker CLI
+        run: |
+          gcloud auth configure-docker asia-south2-docker.pkg.dev
+
+      - name: Push Docker image to GCR
+        run: |
+          docker tag asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest
+          docker push asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest
+
+      - name: Configure kubectl
+        run: |
+          gcloud container clusters get-credentials autopilot-cluster-1 --region asia-south2 --project smart-window-413315
+
+      - name: Deploy to GKE
+        run: |
+          kubectl apply -f your-app-deployment.yaml
+
+      - name: Deploy database configuration
+        run: |
+          kubectl create secret generic database-credentials \
+            --from-literal=spring.datasource.url=jdbc:mysql://34.131.21.79:3306/practice \
+            --from-literal=spring.datasource.username=your_database_username \
+            --from-literal=spring.datasource.password=your_database_password \
+            --from-literal=spring.cloud.gcp.sql.database-name=uat \
+            --from-literal=spring.cloud.gcp.sql.instance-connection-name=smart-window-413315:asia-south2:practice \
+            --from-literal=spring.cloud.gcp.project-id=smart-window-413315

@@ -1,16 +1,14 @@
 package com.example.demo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
 @Entity
 @Data
 @Table(name = "friend")
-public class Users {
-
+public class Users
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
