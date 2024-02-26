@@ -26,7 +26,7 @@ jobs:
 
       - name: Push Docker image to GCR
         run: |
-          docker tag asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest 
+          docker tag your-local-image:latest asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest
           docker push asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest
 
       - name: Configure kubectl
@@ -40,7 +40,7 @@ jobs:
       - name: Deploy database configuration
         run: |
           kubectl create secret generic database-credentials \
-            --from-literal=spring.datasource.url=jdbc:mysql://34.131.21.79:3306/practice \
+            --from-literal=spring.datasource.url=jdbc:mysql://your-database-host:3306/practice \
             --from-literal=spring.datasource.username=root \
             --from-literal=spring.datasource.password=qpalzm@#1M \
             --from-literal=spring.cloud.gcp.sql.database-name=uat \
