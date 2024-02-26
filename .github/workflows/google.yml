@@ -20,6 +20,10 @@ jobs:
           project_id: smart-window-413315
           export_default_credentials: true
 
+      - name: Build Docker image
+        run: |
+          docker build -t your-local-image:latest .
+
       - name: Configure Docker CLI
         run: |
           gcloud auth configure-docker asia-south2-docker.pkg.dev
