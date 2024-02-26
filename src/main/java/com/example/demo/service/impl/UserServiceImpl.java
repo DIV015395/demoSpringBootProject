@@ -1,4 +1,8 @@
-package com.example.demo;
+package com.example.demo.service.impl;
+import com.example.demo.dto.UsersDTO;
+import com.example.demo.entity.Users;
+import com.example.demo.repo.UserRepository;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,7 @@
-package com.example.demo;
+package com.example.demo.controller;
+import com.example.demo.service.UserService;
+import com.example.demo.entity.Users;
+import com.example.demo.dto.UsersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -7,6 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 @RestController
 @RequestMapping("/users")
+@Validated
 public class UserController
 {
     private final UserService userService;
@@ -36,7 +40,7 @@ public class UserController
     }
 
     @PostMapping("/create")
-    public UsersDTO createUser(@RequestBody @Validated UsersDTO users) {
+    public UsersDTO createUser(@Valid @RequestBody UsersDTO users) {
         try
         {
             return userService.createUser(users);
