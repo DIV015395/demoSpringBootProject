@@ -26,7 +26,7 @@ jobs:
 
       - name: Push Docker image to GCR
         run: |
-          docker tag asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest
+          docker tag asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest 
           docker push asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest
 
       - name: Configure kubectl
