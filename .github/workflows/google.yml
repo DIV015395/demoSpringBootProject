@@ -26,7 +26,7 @@ jobs:
 
       - name: Deploy to GKE
         run: |
-          kubectl apply -f google.yaml
+          kubectl apply -f google.yaml 
 
       - name: Deploy database configuration
         run: |
