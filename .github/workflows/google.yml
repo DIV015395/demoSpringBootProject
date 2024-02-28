@@ -20,6 +20,9 @@ jobs:
           project_id: smart-window-413315
           export_default_credentials: true
 
+      - name: Set app version
+        run: echo "APP_VERSION=apps/v1" >> $GITHUB_ENV
+
       - name: Configure kubectl
         run: |
           gcloud container clusters get-credentials mastercluster --region asia-south2 --project smart-window-413315
@@ -37,3 +40,6 @@ jobs:
             --from-literal=spring.cloud.gcp.sql.database-name=uat \
             --from-literal=spring.cloud.gcp.sql.instance-connection-name=smart-window-413315:asia-south2:practice \
             --from-literal=spring.cloud.gcp.project-id=smart-window-413315
+
+      - name: Verify Deployment Status
+        run: kubectl rollout status deployment/springbootjava -n your-namespace
