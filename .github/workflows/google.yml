@@ -23,6 +23,9 @@ jobs:
       - name: Set app version
         run: echo "APP_VERSION=apps/v1" >> $GITHUB_ENV
 
+      - name: Set app version
+        run: echo "APP_VERSION=1.0" >> $GITHUB_ENV
+
       - name: Configure kubectl
         run: |
           gcloud container clusters get-credentials mastercluster --region asia-south2 --project smart-window-413315
