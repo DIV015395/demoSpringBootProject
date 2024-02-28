@@ -28,8 +28,7 @@ jobs:
           gcloud container clusters get-credentials mastercluster --region asia-south2 --project smart-window-413315
 
       - name: Deploy to GKE
-        run: |
-          kubectl apply -f .github/workflows/google.yml
+        run: kubectl apply -f .github/workflows/google.yml  # This line deploys your Kubernetes manifests
 
       - name: Deploy database configuration
         run: |
