@@ -20,22 +20,9 @@ jobs:
           project_id: smart-window-413315
           export_default_credentials: true
 
-      - name: Build Docker image
-        run: |
-          docker build -t your-local-image:latest .
-
-      - name: Configure Docker CLI
-        run: |
-          gcloud auth configure-docker asia-south2-docker.pkg.dev
-
-      - name: Push Docker image to GCR
-        run: |
-          docker tag your-local-image:latest asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest
-          docker push asia-south2-docker.pkg.dev/smart-window-413315/springbootjava:latest
-
       - name: Configure kubectl
         run: |
-          gcloud container clusters get-credentials autopilot-cluster-1 --region asia-south2 --project smart-window-413315
+          gcloud container clusters get-credentials mastercluster --region asia-south2 --project smart-window-413315
 
       - name: Deploy to GKE
         run: |
