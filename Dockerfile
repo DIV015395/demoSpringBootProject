@@ -21,10 +21,11 @@ WORKDIR /app
 COPY ./target/demo-0.0.1-SNAPSHOT.jar app.jar
 
 # Copy the JSON credentials file (consider environment variables instead)
-COPY ./src/main/resources/json_directory/smart-window-413315-a416affd1d62.json /app/credentials.json  # Rename for clarity
+COPY ./src/main/resources/json_directory/smart-window-413315-a416affd1d62.json /app/credentials.json
+
 
 # Set the entry point with security option (consider secrets management)
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-cp", "app.jar", "com.yourcompany.yourpackage.Main"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
 
 # Optional: Expose a port if your application listens on one
-EXPOSE 8080  # Example port for a web application
+EXPOSE 8785
